@@ -29,13 +29,14 @@ def training(news):
         df['score'].iloc[i] = score1   
         
     return df
-hist = msft.balance_sheet
-print(hist)
-news_data = [
-        "Tesla Inc. gained another 2,8% on Wednesday and is now up 1,560% in the past 18 months Tesla bulls are betting the stock’s insane run will continue following a Democratic Senate sweep in Georgia, some Tesla option traders are dumping massive amounts of call options on Wednesday",
-        "Most of the analysis on this stock right now has to do with the Pfizer Inc. highly-touted COVIS-19 vaccine which is now making waves through global markets. That said, even before the vaccine was released, I saw tremendous value in this stock, and the same is true of the stock’s current valuation relative to its peers and its growth potential",      
-        "IPhone suppliers are racing to meet surging demand for Apple Inc.’s 5G handsets after tech-savvy consumers leaped on the first major wireless technology upgrade in a decade. The number suggest the world may finally be warming to 5G with its much faster download speeds and more reliable connections. However, Europe's less profitable phone industry has avoided a headlong plung into 5G, wary of rolling out expensive services that consumers won't be ready to pay for."
-    ]
+
+news_data = [ ]
+msft = yf.Ticker("MSFT")
+
+
+l = len(msft.news)
+for i in range(l):
+    news_data.append(msft.news[i]['title'])
 stk_sentiment = training(news_data)
 del stk_sentiment['news']
 print(stk_sentiment)
